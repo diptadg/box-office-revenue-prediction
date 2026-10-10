@@ -1,0 +1,15 @@
+# R / RStudio
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+.Renviron
+*_files/
+*_cache/
+rsconnect/
+
+# Data not redistributable (see data/README.md)
+data/Box_office_data(2000-2024).csv
+
+# Archives
+*.zip
