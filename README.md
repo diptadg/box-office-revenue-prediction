@@ -4,7 +4,7 @@ Classifying films as High or Low box-office revenue relative to their production
 
 ## Summary
 
-This project classifies films released between 2000 and 2024 as High or Low box-office revenue relative to the GDP of their production country. It consists of an R Markdown report (`report.Rmd`, rendered as `report.html`) and an interactive Shiny app (`app.R`) covering data exploration, feature selection, model training, evaluation and prediction. It was an individual project for the Computational Data Analysis unit at the University of Western Australia (UWA) in 2025.
+This project classifies films released between 2000 and 2024 as High or Low box-office revenue relative to the GDP of their production country. It consists of an R Markdown report (`report.Rmd`) and an interactive Shiny app (`app.R`) covering data exploration, feature selection, model training, evaluation and prediction. It was an individual project for the Computational Data Analysis unit at the University of Western Australia (UWA) in 2025.
 
 ## Question
 
@@ -35,7 +35,7 @@ The box-office file is not redistributed. [data/README.md](data/README.md) descr
 
 ## Results
 
-Test-set results printed in `report.html` (section 7):
+Test-set results printed in the rendered report (section 7 of `report.Rmd`):
 
 | Feature set | Model | Accuracy | AUC |
 |-------------|-------|----------|-----|
@@ -99,13 +99,13 @@ The project was built and tested with R 4.6.1. All packages come from CRAN.
 
    In RStudio, open `box-office-revenue-prediction.Rproj`, open `app.R` and click **Run App**. The app trains its models when a session starts, so the first load takes a while. Startup also needs an internet connection to download Google Fonts.
 
-6. To read the report, open `report.html` in a browser. GitHub does not render it, so download it or open your local copy. To re-knit it from the repository root:
+6. The rendered report is not in the repository. To build it, knit `report.Rmd` from the repository root:
 
    ```sh
    Rscript -e "rmarkdown::render('report.Rmd')"
    ```
 
-   Rendering needs [Pandoc](https://pandoc.org/installing.html), which RStudio includes (use RStudio's **Knit** button if you don't have Pandoc installed separately). Results may differ slightly with newer package versions.
+   This writes `report.html`, which you can open in a browser. Rendering needs [Pandoc](https://pandoc.org/installing.html), which RStudio includes (use RStudio's **Knit** button if you don't have Pandoc installed separately). Results may differ slightly with newer package versions.
 
 `CDA_Project_Draft.R` is the earlier draft script for the analysis. It reads the CSV files from the working directory rather than `data/`.
 

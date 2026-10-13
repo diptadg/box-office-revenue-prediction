@@ -8,6 +8,9 @@
 *_cache/
 rsconnect/
 
+# Rendered report (build it by knitting report.Rmd)
+report.html
+
 # Data not redistributable (see data/README.md)
 data/Box_office_data(2000-2024).csv
 
