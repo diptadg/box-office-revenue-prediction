@@ -66,13 +66,46 @@ LIME explanations for the logistic regression model (Info Gain features):
 
 ## How to run
 
-Requires R 4.6.1, the version recorded in `renv.lock`, and RStudio.
+The project was built and tested with R 4.6.1. All packages come from CRAN.
 
-1. Clone the repository and open `box-office-revenue-prediction.Rproj` in RStudio.
-2. Run `renv::restore()` to install the package versions recorded in `renv.lock`.
-3. Add `data/Box_office_data(2000-2024).csv` as described in [data/README.md](data/README.md).
-4. Open `app.R` and click **Run App**. The app trains its models when a session starts, so the first load takes a while. Startup also needs an internet connection to download Google Fonts.
-5. To read the report, download `report.html` and open it in a browser. GitHub does not render it. Re-knitting `report.Rmd` is optional, and results may differ slightly with newer package versions.
+1. Install [R](https://cran.r-project.org/) (4.6.1 or later). [RStudio](https://posit.co/download/rstudio-desktop/) is optional.
+2. Clone the repository:
+
+   ```sh
+   git clone https://github.com/diptadg/box-office-revenue-prediction.git
+   cd box-office-revenue-prediction
+   ```
+
+3. Install the R packages from an R console:
+
+   ```r
+   install.packages(c(
+     "shiny", "shinydashboard", "bslib", "DT", "dplyr", "tidyr", "ggplot2",
+     "scales", "caret", "pROC", "rpart", "FSelectorRcpp", "lime",
+     "tinythemes", "showtext",
+     # only needed to re-knit the report
+     "randomForest", "naniar", "rmarkdown", "knitr"
+   ))
+   ```
+
+   On Linux, CRAN packages are built from source, so you also need a C/C++ toolchain (for example `build-essential`) plus the development headers that packages such as `showtext` (FreeType) ask for.
+
+4. Add `data/Box_office_data(2000-2024).csv` as described in [data/README.md](data/README.md). The other two CSV files are already in `data/`.
+5. Start the app from the repository root. `app.R` reads from `data/` relative to the working directory, so run it from there:
+
+   ```sh
+   Rscript -e "shiny::runApp('app.R', launch.browser = TRUE)"
+   ```
+
+   In RStudio, open `box-office-revenue-prediction.Rproj`, open `app.R` and click **Run App**. The app trains its models when a session starts, so the first load takes a while. Startup also needs an internet connection to download Google Fonts.
+
+6. To read the report, open `report.html` in a browser. GitHub does not render it, so download it or open your local copy. To re-knit it from the repository root:
+
+   ```sh
+   Rscript -e "rmarkdown::render('report.Rmd')"
+   ```
+
+   Rendering needs [Pandoc](https://pandoc.org/installing.html), which RStudio includes (use RStudio's **Knit** button if you don't have Pandoc installed separately). Results may differ slightly with newer package versions.
 
 `CDA_Project_Draft.R` is the earlier draft script for the analysis. It reads the CSV files from the working directory rather than `data/`.
 
@@ -95,4 +128,3 @@ Requires R 4.6.1, the version recorded in `renv.lock`, and RStudio.
 
 - Helper functions in `report.Rmd` marked `# Source: OpenAI` / `# Model: GPT-5` were generated with GPT-5.
 - `app.R` reuses eight of them: `clean_numeric`, `logLikelihood`, `add_single_prob_column`, `evaluate_single_variable`, `plot_model_performance`, `plot_model_rocs`, `plot_confusion_matrices` and `summarise_deviances`.
-- This repository's packaging and README were prepared with Claude Code.
